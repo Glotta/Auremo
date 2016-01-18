@@ -1,0 +1,54 @@
+@font-face {
+	font-family: 'open_sansregular';
+	src: url('../fonts/opensans.eot');
+	src: url('../fonts/opensans.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/opensans.woff2') format('woff2'),
+		 url('../fonts/opensans.woff') format('woff'),
+		 url('../fonts/opensans.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'open_sansbold';
+	src: url('../fonts/opensansbold.eot');
+	src: url('../fonts/opensansbold.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/opensansbold.woff2') format('woff2'),
+		 url('../fonts/opensansbold.woff') format('woff'),
+		 url('../fonts/opensansbold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'open_sanslight';
+	src: url('../fonts/opensanslight.eot');
+	src: url('../fonts/opensanslight.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/opensanslight.woff2') format('woff2'),
+		 url('../fonts/opensanslight.woff') format('woff'),
+		 url('../fonts/opensanslight.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'pf_din_text_comp_promedium';
+	src: url('../fonts/pfdintextcomppro-medium.eot');
+	src: url('../fonts/pfdintextcomppro-medium.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/pfdintextcomppro-medium.woff2') format('woff2'),
+		 url('../fonts/pfdintextcomppro-medium.woff') format('woff'),
+		 url('../fonts/pfdintextcomppro-medium.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'pf_din_text_comp_proregular';
+	src: url('../fonts/pfdintextcomppro-regular.eot');
+	src: url('../fonts/pfdintextcomppro-regular.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/pfdintextcomppro-regular.woff2') format('woff2'),
+		 url('../fonts/pfdintextcomppro-regular.woff') format('woff'),
+		 url('../fonts/pfdintextcomppro-regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}

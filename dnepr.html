@@ -1,0 +1,639 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<title></title>
+		<link href="css/fonts.css" rel="stylesheet" type="text/css">
+		<link href="css/icomoon.css" rel="stylesheet" type="text/css">
+		<link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+		<link href="css/slick.css" rel="stylesheet" type="text/css">
+		<link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
+		<link href="css/style.css" rel="stylesheet" type="text/css">
+		
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/slick.min.js"></script>				<!-- Slider -->
+		<script type="text/javascript" src="js/store.min.js"></script>				<!-- Local Storage -->
+		<script type="text/javascript" src="js/respond.js"></script>				<!-- @media support for old browsers -->
+		<script type="text/javascript" src="js/magnific-popup.js"></script>			<!-- Responsive Popup -->
+		<script type="text/javascript" src="js/jquery-ui.min.js"></script>			<!-- Custom Select -->
+		<script type="text/javascript" src="js/dropdown.js"></script>				<!-- Dropdown -->
+		<script type="text/javascript" src="js/common.js"></script>					<!-- Custom Functions and Init -->
+	</head>
+	<body class="page-wrap">
+		<div class="clearfix body-inner">
+			<div id="main">
+	<!-- Page -->
+				<div id="page">
+					<div class="bg-header clearfix">
+						<div class="under-unit">
+							<div id="map-canvas"></div>
+							<script>
+								function initializeMap(){
+									var myLatlng = new google.maps.LatLng(48.4581468,35.0222442);
+									var myOptions = {
+										zoom: 6,
+										center: myLatlng,
+										mapTypeId: google.maps.MapTypeId.ROADMAP,
+										mapTypeControlOptions: {
+											position: google.maps.ControlPosition.BOTTOM_LEFT,
+										},
+										styles: [
+											{
+												'featureType': 'administrative',
+												'elementType': 'labels',
+												'stylers': [
+													{'visibility': 'on'},
+													{'lightness': '50'}
+												]
+											},
+											{
+												'featureType': 'administrative.country',
+												'elementType': 'geometry.fill',
+												'stylers': [
+													{'color': '#ffffff'},
+													{'visibility': 'on'}
+												]
+											},
+											{
+												'featureType': 'administrative.country',
+												'elementType': 'geometry.stroke',
+												'stylers': [{'color': '#DCE7EB'}]
+											},
+											{
+												'featureType': 'administrative.province',
+												'elementType': 'geometry.fill',
+												'stylers': [
+													{'visibility': 'on'},
+													{'color': '#ffffff'}
+												]
+											},
+											{
+												'featureType': 'administrative.province',
+												'elementType': 'geometry.stroke',
+												'stylers': [{'color': '#DCE7EB'}]
+											},
+											{
+												'featureType': 'landscape',
+												'elementType': 'geometry',
+												'stylers': [{'visibility': 'off'}]
+											},
+											{
+												'featureType': 'landscape',
+												'elementType': 'geometry.fill',
+												'stylers':[{'color': '#ffffff'}]
+											},
+											{
+												'featureType': 'landscape.natural',
+												'elementType': 'geometry.fill',
+												'stylers': [
+													{'visibility': 'on'},
+													{'color': '#ffffff'}
+												]
+											},
+											{
+												'featureType': 'landscape.natural',
+												'elementType': 'labels',
+												'stylers':[{'visibility': 'off'}]
+											},
+											{
+												'featureType': 'poi',
+												'elementType': 'all',
+												'stylers': [{'visibility': 'off'}]
+											},
+											{
+												'featureType': 'road',
+												'elementType': 'all',
+												'stylers': [{'visibility': 'off'}]
+											},
+											{
+												'featureType': 'road',
+												'elementType': 'labels',
+												'stylers':[{'visibility': 'on'}]
+											},
+											{
+												'featureType': 'transit',
+												'elementType': 'labels.icon',
+												'stylers': [{'visibility': 'off'}]},
+											{
+												'featureType': 'transit.line',
+												'elementType': 'geometry',
+												'stylers':  [{'visibility': 'off'}]
+											},
+											{
+												'featureType': 'transit.line',
+												'elementType': 'labels.text',
+												'stylers':[{'visibility': 'off'}]
+											},
+											{
+												'featureType': 'transit.station.airport',
+												'elementType': 'geometry',
+												'stylers': [{'visibility': 'off'}]
+											},
+											{
+												'featureType': 'transit.station.airport',
+												'elementType': 'labels',
+												'stylers': [{'visibility': 'off'}]
+											},
+											{
+												'featureType': 'water',
+												'elementType': 'geometry',
+												'stylers': [{'color': '#83888B'}]
+											},
+											{
+												'featureType': 'water',
+												'elementType': 'geometry.fill',
+												'stylers': [
+													{'visibility': 'on'},
+													{'color': '#d0c8c5'}
+												]
+											},
+											{
+												'featureType': 'water',
+												'elementType': 'labels',
+												'stylers':[{'visibility': 'off'}]
+											}
+										]
+
+									};
+									var map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+					
+									var markerImage = new google.maps.MarkerImage(
+										'img/icons/marker.png',
+										new google.maps.Size(36,51),
+										new google.maps.Point(0,0),
+										new google.maps.Point(0,33)
+									);
+									
+									var markerImageHover = new google.maps.MarkerImage(
+										'img/icons/marker-hover.png',
+										new google.maps.Size(36,51),
+										new google.maps.Point(0,0),
+										new google.maps.Point(0,33)
+									);
+
+									var marker = new google.maps.Marker({
+										icon: markerImage,
+										position: myLatlng, 
+										map: map,
+										//animation:google.maps.Animation.BOUNCE
+									});
+									
+									google.maps.event.addListener(marker, 'mouseover', function() {
+										marker.setIcon(markerImageHover);
+									});
+					
+									google.maps.event.addListener(marker, 'mouseout', function() {
+										marker.setIcon(markerImage);
+									});
+								}
+								initializeMap();
+							</script>
+						</div>
+						<div class="over-unit">
+							<div class="simple-block">
+								<div class="breadcrumb">
+									<a class="gray-link link" href="index.html">Главная</a>
+									<a class="gray-link link" href=".html">Контакты</a>
+									<a class="gray-link link" href=".html">Украина</a>
+								</div>
+								<h1 class="general-title page-title">Днепропетровск, Украина</h1>
+								<div class="simple-list">
+									<div class="list-item clearfix">
+										<span class="item-label">Адрес:</span>
+										<span class="item-value">пр. Кирова, 28а, офис 330</span>
+									</div>
+									<div class="info-item clearfix">
+										<span class="item-label">Телефон:</span>
+										<span class="os-bold item-value">+38 056 123-45-67</span>
+									</div>
+									<div class="info-item clearfix">
+										<span class="item-label">Факс:</span>
+										<span class="os-bold item-value">+38 0562 34-67-89</span>
+									</div>
+									<div class="info-item clearfix">
+										<span class="item-label">Эл. почта:</span>
+										<span class="item-value"><a class="simple-link" href="">info@fresh-d.net</a></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+	<!-- End Page -->
+	<!-- Footer -->
+				<div id="footer">
+					<div class="inner">
+						<div class="site-info">
+							<div>&copy; 2007—2015. Компания «AUREMO».</div>
+							<div class="text">Телефон в Москве: <b class="nowrap">+7 945 123-45-67</b></div>
+							<div>Бесплатно на территории РФ: <b class="nowrap">8 800 123-45-67</b></div>
+							<div class="text">
+								<a class="dark-link" href="">Карта сайта</a>
+							</div>
+						</div>
+						<div class="other-info">
+							<div>Дизайн сайта — <a class="dark-link" href="">Fresh</a></div>
+							<div class="text">Разработка  — <a class="dark-link" href="">Vooq</a></div>
+						</div>
+					</div>
+				</div>
+	<!-- End Footer -->
+			</div>
+	
+	<!-- Sidebar -->
+			<div id="sidebar" class="tracking">
+				<div class="tracker">
+					<div class="mobile-menu">
+						<a class="mobile-menu-btn mobile-search" data="#side-search" href="#">
+							<span class="icon icon-search icon-yellow"></span>
+						</a>
+						<a class="mobile-menu-btn fr" data="#side-menu" href="">
+							<span class="icon icon-menu icon-yellow"></span>
+						</a>
+						<a class="mobile-menu-btn fr" data="#side-contacts" href="">
+							<span class="icon icon-phone icon-yellow"></span>
+						</a>
+						<div id="logo">
+							<a class="logo-link" href="index.html">AUREMO></a>
+						</div>
+					</div>
+					<div class="mobile-toggle">
+		<!-- Search -->
+						<form id="side-search" class="hide-mobile toggle-item" action="?" method="get">
+							<input type="text" id="input-side-search" class="search-input" name="search" value="" autocomplete="off" placeholder="Поиск по сайту">
+							<label for="input-side-search" class="icon icon-search icon-yellow"></label>
+							<button type="submit" class="search-submit submit-btn icon icon-search" value=""></button>
+						</form>
+						<a class="mobile-search icon-unit" href="#">
+							<span class="icon icon-search icon-yellow"></span>
+						</a>
+		<!-- End Search -->
+		
+		<!-- Side Menu -->
+						<!--
+						<div class="menu-item">
+							<a class="" href="price.html">
+								Назад
+							</a>
+							<a class="" href="price.html">
+								Вперед
+							</a>
+						</div>
+						-->
+						<ul id="side-menu" class="hide-mobile toggle-item slide-menu" menu-index="0">
+							<li class="menu-item">
+								<a class="menu-link hover" href="price.html">
+									<span class="icon-unit">
+										<span class="icon icon-price icon-yellow"></span>
+									</span>
+									<span class="menu-text">прайс-лист</span>
+								</a>
+							</li>
+							
+							<li class="menu-item">
+								<a class="menu-link hover" href="#">
+									<span class="icon-unit">
+										<span class="icon icon-products icon-yellow"></span>
+									</span>
+									<span class="menu-text">Продукция</span>
+									<span class="arrows">
+										<span class="icon icon-down-thin"></span>
+										<span class="icon icon-up-thin"></span>
+									</span>
+								</a>
+								<ul class="submenu">
+									<li class="submenu-title">Цветные металлы</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="aluminum.html">Баббит, припой, олово</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="aluminum.html">Бронза</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="aluminum.html">Медь</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="aluminum.html">Латунь</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="aluminum.html">Алюминий</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="aluminum.html">Дюраль</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="aluminum.html">Свинец</a>
+									</li>
+								</ul>
+							</li>
+							
+							<li class="menu-item">
+								<a class="menu-link hover" href="">
+									<span class="icon-unit">
+										<span class="icon icon-about icon-yellow"></span>
+									</span>
+									<span class="menu-text">компания</span>
+									<span class="arrows">
+										<span class="icon icon-down-thin"></span>
+										<span class="icon icon-up-thin"></span>
+									</span>
+								</a>
+								<ul class="submenu">
+									<li class="submenu-title">Компания auremo</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="company.html">О компании</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="certificate.html">Сертификаты</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="news.html">Новости</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="vacancies.html">Вакансии</a>
+									</li>
+								</ul>
+							</li>
+							
+							<li class="menu-item">
+								<a class="menu-link hover" href="#">
+									<span class="icon-unit">
+										<span class="icon icon-spravka icon-yellow"></span>
+									</span>
+									<span class="menu-text">Справочник</span>
+									<span class="arrows">
+										<span class="icon icon-down-thin"></span>
+										<span class="icon icon-up-thin"></span>
+									</span>
+								</a>
+								<ul class="submenu">
+									<li class="submenu-title">Справочные данные</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">Общие данные</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="nickel-alloys.html">Никелевые сплавы</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">Нержавеющая сталь</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">Титан</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">Редкие и тугоплавкие</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">Цветные металлы</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">Легированная сталь</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">ГОСТ</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">Заводы</a>
+									</li>
+								</ul>
+							</li>
+							
+							<li class="menu-item">
+								<a class="menu-link hover" href="#">
+									<span class="icon-unit">
+										<span class="icon icon-marka icon-yellow"></span>
+									</span>
+									<span class="menu-text">Марочник</span>
+									<span class="arrows">
+										<span class="icon icon-down-thin"></span>
+										<span class="icon icon-up-thin"></span>
+									</span>
+								</a>
+								<ul class="submenu">
+									<li class="submenu-title">данные марочника</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="characteristics.html">общие характеристики</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="compare.html">Сравнение</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">Калькулятор</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">Аналоги зарубежных материалов</a>
+									</li>
+								</ul>
+							</li>
+							
+							<li class="menu-item active">
+								<a class="menu-link hover" href="#">
+									<span class="icon-unit">
+										<span class="icon icon-contacts icon-yellow"></span>
+									</span>
+									<span class="menu-text">Контакты</span>
+									<span class="arrows">
+										<span class="icon icon-down-thin"></span>
+										<span class="icon icon-up-thin"></span>
+									</span>
+								</a>
+								<ul class="submenu">
+									<li class="submenu-title">Контактная информация</li>
+									<li class="submenu-item active">
+										<a class="submenu-link" href=".html">Украина</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">россия</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href=".html">Европа</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+		<!-- End Side Menu -->
+		
+		<!-- Side Contacts -->
+						<div id="side-contacts" class="hide-mobile side-contacts toggle-item">
+							<div>Телефон в <a class="internal-light-link light-link" href="">Москве</a></div>
+							<div class="phone">
+								<div class="item">+7 945 123-45-67</div>
+								<div class="item">8 800 123-45-67</div>
+							</div>
+							<div>Бесплатно по РФ</div>
+							<div class="info">
+								<a class="internal-light-link light-link" href="mailto:info@auremo.org">info@auremo.org</a>
+							</div>
+						</div>
+		<!-- End Side Contacts -->
+		
+		<!-- Lng -->
+						<div class="hide-mobile side-lng clearfix">
+							<div class="fl">
+								Язык — <a class="lng-toggle-link internal-link" href="" rel="#">Русский</a>
+							</div>
+							<div class="lng-unit animated fadeInUp">
+								<div class="lng-header">
+									<div class="lng-title os-bold">Выберите язык</div>
+									<span class="close-btn hover icon-gray icon icon-close"></span>
+								</div>
+								<ul class="lng-list">
+									<li class="lng-item">
+										<a class="lng-link" href="">
+											<img src="img/lng/ru.png" alt="">
+											<span class="lng-text">Русский</span>
+										</a>
+									</li>
+									<li class="lng-item">
+										<a class="lng-link" href="">
+											<img src="img/lng/pl.png" alt="">
+											<span class="lng-text">Poiski</span>
+										</a>
+									</li>
+									<li class="lng-item">
+										<a class="lng-link" href="">
+											<img src="img/lng/en.png" alt="">
+											<span class="lng-text">English</span>
+										</a>
+									</li>
+									<li class="lng-item">
+										<a class="lng-link" href="">
+											<img src="img/lng/cz.png" alt="">
+											<span class="lng-text">Čeština</span>
+										</a>
+									</li>
+									<li class="lng-item">
+										<a class="lng-link" href="">
+											<img src="img/lng/ua.png" alt="">
+											<span class="lng-text">Українська</span>
+										</a>
+									</li>
+									<li class="lng-item">
+										<a class="lng-link" href="">
+											<img src="img/lng/fr.png" alt="">
+											<span class="lng-text">Français</span>
+										</a>
+									</li>
+									<li class="lng-item">
+										<a class="lng-link" href="">
+											<img src="img/lng/de.png" alt="">
+											<span class="lng-text">Deutsch</span>
+										</a>
+									</li>
+									<li class="lng-item">
+										<a class="lng-link" href="">
+											<img src="img/lng/bg.png" alt="">
+											<span class="lng-text">Български</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div id="font-switcher" class="fr os-bold">
+								<a class="switch-link internal-link" href="" rel="-">А-</a>
+								<a class="switch-link internal-link" href="" rel="normal">А</a>
+								<a class="switch-link internal-link" href="" rel="+">А+</a>
+							</div>
+						</div>
+		<!-- End Lng -->
+					</div>
+				</div>
+			</div>
+	<!-- End Sidebar -->
+	
+	<!-- Rightbar -->
+			<div id="rightbar">
+				<div class="rightbar-controls">
+					<div class="controls">
+						<div class="item">
+							<a class="hover inactive toggler" href=".rightbar-content">
+								<span class="icon icon-close icon-purple"></span>
+								<span class="icon icon-menu icon-purple"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="rightbar-content">
+					<div class="rightbar-inner">
+				<!-- Right Menu -->
+						<div class="rm-menu-unit">
+							<h2 class="light-title">
+								Выберите удобный для вас город
+							</h2>
+							<ul class="rightbar-menu">
+								<li class="rm-item active">
+									<div class="menu-link">Днепропетровск</div>
+								</li>
+								<li class="rm-item">
+									<a class="menu-link" href="">Киев</a>
+								</li>
+								<li class="rm-item">
+									<a class="menu-link" href="">Харьков</a>
+								</li>
+								<li class="rm-item">
+									<a class="menu-link" href="">Одеса</a>
+								</li>
+								<li class="rm-item">
+									<a class="menu-link" href="">Львов</a>
+								</li>
+							</ul>
+						</div>
+					<!-- End Right Menu -->
+						
+						<div id="support" class="rightbar-unit">
+							<h2 class="light-title">
+								наш консультант сэкономит ваше время
+							</h2>
+							<div class="clearfix user-info">
+								<div class="fl userpic">
+									<img src="img/temp/support.jpg">
+								</div>
+								<h3 class="simple-title">Алексей</h3>
+								<div class="font-small">Консультант в Росии</div>
+								<div class="font-small dropdown">
+									<a href="" class="internal-link drop-link dropdown-toggle" data-toggle="dropdown">Другие страны</a>
+									<div class="dropdown-menu dropdown-list">
+										<a class="item" href="">Украина</a>
+										<a class="item" href="">Россия</a>
+										<a class="item" href="">Казахстан</a>
+										<a class="item" href="">Международ-ный отдел</a>
+									</div>
+								</div>
+							</div>
+							<div class="font-small">
+								Моб. телефон <a href="" class="internal-link">Viber</a>
+							</div>
+							<div class="phone">+7 945 123-45-67</div>
+							<div class="font-smaller">
+								Skype: <a href="" class="internal-link">Alexpofigo</a>
+							</div>
+							<div class="additional-unit">
+								<div class="font-smaller">
+									<a href="#support-form" class="toggler internal-link">Задать вопрос</a>
+								</div>
+								<form id="support-form" class="support-form" action="?">
+									<div class="form-field">
+										<input name="name" class="text-field wide" type="text" placeholder="Ваше имя">
+									</div>
+									<div class="form-field">
+										<input name="email" class="text-field wide" type="text" placeholder="Эл. почта">
+									</div>
+									<div class="form-field">
+										<textarea class="text-field wide" name="message" placeholder="Сообщение"></textarea>
+									</div>
+									<div class="form-submit">
+										<input type="submit" class="submit-btn btn wide" value="Отправить">
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="rb-simple-unit font-small light">Алюминиевый прокат: цена, ГОСТ, алюминиевый прокат цена в России и Украине – Электровек-сталь</div>
+					</div>
+				</div>
+			</div>
+	<!-- End Rightbar -->
+		</div>
+		<div id="body-overlay"></div>
+	</body>
+</html>
