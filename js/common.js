@@ -124,6 +124,20 @@ jQuery(document).ready(function() {
 		btn: '.submit-btn',
 		parent: '.search-table'
 	});
+	
+	
+	$('.search-table').each(function(index, el) {
+		var $el = $(el),
+			$headers = $('.list-title .cell'),
+			$items = $el.find('.list-title + .table-item .cell');
+			
+		$items.each( function(index, el) {
+			var $el = $(el),
+				w = $el.width();
+			$el.width(w);
+			$headers.eq(index).width(w);
+		});
+	});
 });
 
 
@@ -255,6 +269,11 @@ function setBodyFontSize() {
 				e.preventDefault();
 				this.$link = $(e.currentTarget);
 				this.toggler();
+			}, this));
+			
+			this.$overlay.on('click.toggleTabs', $.proxy(function(e){
+				e.preventDefault();
+				this.hideItem(true);
 			}, this));
 		};
 		
@@ -725,7 +744,7 @@ function setBodyFontSize() {
 })(jQuery);
 
 (function( $ ) {
-	/* Dropdown */
+	/* Filter Button */
 	$.fn.filterButton = function(options) {
 		
 		this.init = function() {
@@ -778,7 +797,7 @@ function setBodyFontSize() {
 })(jQuery);
 
 (function( $ ) {
-	/* Dropdown */
+	/* Search Button */
 	$.fn.searchButton = function(options) {
 		this.$btn = !!options.parent ? this.closest(options.parent).find(options.btn) : $(options.btn);
 		
