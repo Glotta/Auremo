@@ -189,12 +189,17 @@ function setBodyFontSize() {
 		$links = $('#font-switcher .switch-link');
 	
 	var setActive = function() {
+		if (window.innerWidth < 900) {
+			$body.css('font-size', '');
+			return;
+		}
+		
 		var ls = localStorage.getItem('bodySize');
 		
 		$body.css('font-size', ls + 'px');
 		
+		
 		if (ls == null) {
-			
 			localStorage.setItem('bodySize', size.toString());
 			$links.eq(1).addClass('disable');
 		}
