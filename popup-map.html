@@ -46,6 +46,7 @@
 						zoom: 6,
 						center: myLatlng,
 						mapTypeId: google.maps.MapTypeId.ROADMAP,
+						mapTypeControl: false,
 						mapTypeControlOptions: {
 							position: google.maps.ControlPosition.BOTTOM_LEFT,
 						},
@@ -120,7 +121,7 @@
 							{
 								'featureType': 'road',
 								'elementType': 'labels',
-								'stylers':[{'visibility': 'on'}]
+								'stylers':[{'visibility': 'off'}]
 							},
 							{
 								'featureType': 'transit',

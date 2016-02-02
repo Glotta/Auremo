@@ -85,7 +85,11 @@ jQuery(document).ready(function() {
 	
 	/* Selectmenu */
 	$('.custom-select')
-		.selectmenu()
+		.selectmenu({
+			change: function( event, ui, y ) {
+				console.log(event, ui, y)
+			}
+		})
 		.selectmenu('menuWidget');
 		
 	$('.popup-select .select')
@@ -188,13 +192,22 @@ function setBodyFontSize() {
 		size = parseInt($body.css('font-size')),
 		$links = $('#font-switcher .switch-link');
 	
-	var setActive = function() {
+	var setActive = function(e) {
 		if (window.innerWidth < 900) {
 			$body.css('font-size', '');
 			return;
 		}
 		
 		var ls = localStorage.getItem('bodySize');
+		
+		if (e) {
+			$body.css({
+				'-webkit-transition': 'font-size .5s ease-out',
+				'-moz-transition': 'font-size .5s ease-out',
+				'-o-transition': 'font-size .5s ease-out',
+				'transition': 'font-size .5s ease-out'
+			});
+		}
 		
 		$body.css('font-size', ls + 'px');
 		
@@ -234,7 +247,7 @@ function setBodyFontSize() {
 		else {
 			localStorage.setItem('bodySize', size);
 		}
-		setActive();
+		setActive(e);
 	});
 	
 	$(window).on('resize', setActive);

@@ -7,11 +7,12 @@ a, a:visited { text-decoration: none; color: #636; -webkit-transition: backgroun
 a:hover { color: #cc0000; }
 .clearfix:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0; line-height: 0; }
 input, textarea { vertical-align: top; background: none; font-family: 'open_sansregular', Arial, Helvetica, sans-serif; font-size: 15px; border-radius: 0; letter-spacing: 1px; -webkit-appearance: none; }
+textarea { resize: none; }
 img { vertical-align: top; }
 
 /* General */
 html { height: 100%; background-color: #f5f4ec; overflow-x: hidden; }
-body {  height: 100%; font: 106.5%/1.45 'open_sansregular', Arial, Helvetica, sans-serif; color: #000; position: relative; -webkit-transition: font-size .5s ease-out; -moz-transition: font-size .5s ease-out; -o-transition: font-size .5s ease-out; transition: font-size .5s ease-out; }
+body { height: 100%; font: 106.5%/1.45em 'open_sansregular', Arial, Helvetica, sans-serif; color: #000; position: relative; }
 
 /* Help Classes */
 .fl { float: left; }
@@ -211,7 +212,7 @@ input.text-field { height: 37px; }
 .ui-selectmenu-button { vertical-align: top; }
 .ui-selectmenu-menu .ui-menu { max-height: 150px; overflow: auto; background-color: #fff; border-width: 0 1px 1px; border-style: solid; border-color: #ccc; }
 .ui-selectmenu-menu .ui-menu-item { padding: 2px 5px; font-size: 15px; overflow: hidden; white-space: nowrap; }
-.ui-selectmenu-text { border: 1px solid #ccc; font-size: 15px; padding: 7px 18px 7px 5px; height: 37px; background-color: #fff; }
+.ui-selectmenu-text { border: 1px solid #ccc; line-height: 1.4em; font-size: 15px; padding: 7px 18px 7px 5px; height: 37px; background-color: #fff; }
 .ui-selectmenu-button span.ui-selectmenu-text { text-overflow: inherit; }
 .ui-selectmenu-button span.ui-icon { top: 50%; margin-top: -4px; right: 5px; color: #999; font-size: 8px; }
 .ui-state-focus.ui-selectmenu-button { box-shadow: 0 0 5px rgba(242, 202, 62, .6); }
