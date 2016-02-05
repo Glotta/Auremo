@@ -1,4 +1,6 @@
 jQuery(document).ready(function() {
+		
+	
 	/* Check Touch Devise */
 	if ('ontouchstart' in document.documentElement) {
 		$('body').addClass('touch');
@@ -142,6 +144,9 @@ jQuery(document).ready(function() {
 			$headers.eq(index).width(w);
 		});
 	});
+	
+	/* Popup */
+	$('.show-popup').click(initPopup);
 });
 
 
@@ -166,6 +171,33 @@ function parallax() {
 	}
 	if (wH > elPos2) {
 		//$('.payment-info').css('background-position', '0 ' + -(wH - elPos2)/3 + 'px')
+	}
+}
+
+function initPopup(e) {
+	var src = '';
+	
+	if (e instanceof String) {
+		src = e;
+	}
+	else {
+		e.preventDefault();
+		src = $(e.currentTarget).attr('href');
+	}
+	
+	$popup = $(src);
+	
+	$.magnificPopup.open({
+		items : {
+			src : src
+		},
+		type : 'inline',
+		closeBtnInside: true,
+		closeMarkup: '<button type="button" class="icon icon-close mfp-close"></button>'
+	}, 0);
+	
+	if (!!$popup.attr('data-map')) {
+		initializeMap(src);
 	}
 }
 

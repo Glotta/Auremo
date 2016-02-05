@@ -33,7 +33,7 @@
 							<script>
 								function initializeMap(){
 									var myLatlng = new google.maps.LatLng(48.4581468,35.0222442,51.2372979,6.71779);
-									var myOptions = {
+									var mapSettings.mapOptions = {
 										zoom: 3,
 										center: myLatlng,
 										mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -43,7 +43,7 @@
 										styles: [{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"on"},{"lightness": "50"}]},{"featureType":"administrative.country","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"visibility":"on"}]},{"featureType":"administrative.country","elementType":"geometry.stroke","stylers":[{"color":"#DCE7EB"}]},{"featureType":"administrative.province","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"administrative.province","elementType":"geometry.stroke","stylers":[{"color":"#DCE7EB"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape.natural","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"transit.station.airport","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"transit.station.airport","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#83888B"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#d0c8c5"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]}]
 
 									};
-									var map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+									var map = new google.maps.Map(document.getElementById('map-canvas'), mapSettings.mapOptions);
 					
 									var markerImage = new google.maps.MarkerImage(
 										'img/icons/marker.png',
@@ -73,6 +73,12 @@
 									google.maps.event.addListener(marker, 'mouseout', function() {
 										marker.setIcon(markerImage);
 									});
+									
+									/*map.addListener('center_changed', function() {
+										window.setTimeout(function() {
+											map.panTo(marker.getPosition());
+										}, 3000);
+									});*/
 								}
 								initializeMap();
 							</script>

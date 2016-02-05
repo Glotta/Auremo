@@ -33,7 +33,7 @@
 							<script>
 								function initializeMap(){
 									var myLatlng = new google.maps.LatLng(48.4581468,35.0222442);
-									var myOptions = {
+									var mapSettings.mapOptions = {
 										zoom: 6,
 										center: myLatlng,
 										mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -111,7 +111,7 @@
 											{
 												'featureType': 'road',
 												'elementType': 'labels',
-												'stylers':[{'visibility': 'on'}]
+												'stylers':[{'visibility': 'off'}]
 											},
 											{
 												'featureType': 'transit',
@@ -158,7 +158,7 @@
 										]
 
 									};
-									var map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+									var map = new google.maps.Map(document.getElementById('map-canvas'), mapSettings.mapOptions);
 					
 									var markerImage = new google.maps.MarkerImage(
 										'img/icons/marker.png',
@@ -188,6 +188,12 @@
 									google.maps.event.addListener(marker, 'mouseout', function() {
 										marker.setIcon(markerImage);
 									});
+									
+									/*map.addListener('center_changed', function() {
+										window.setTimeout(function() {
+											map.panTo(marker.getPosition());
+										}, 3000);
+									});*/
 								}
 								initializeMap();
 							</script>

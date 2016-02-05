@@ -12,7 +12,7 @@ img { vertical-align: top; }
 
 /* General */
 html { height: 100%; background-color: #f5f4ec; overflow-x: hidden; }
-body { height: 100%; font: 106.5%/1.45em 'open_sansregular', Arial, Helvetica, sans-serif; color: #000; position: relative; }
+body { height: 100%; font: 106.5%/1.45 'open_sansregular', Arial, Helvetica, sans-serif; color: #000; position: relative; }
 
 /* Help Classes */
 .fl { float: left; }
@@ -554,6 +554,8 @@ input.text-field { height: 37px; }
 .currency-list .c-item { padding: 4px 0; }
 
 /* Popup */
+.popup { display: none; }
+.mfp-wrap .popup { display: block; }
 .popup .inherit-title { padding-bottom: 10px; }
 .popup { position: relative;  width: auto; max-width: 505px; margin: 20px auto; }
 .popup-longer { max-width: 623px; }
