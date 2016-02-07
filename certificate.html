@@ -14,16 +14,23 @@
 		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>		<!-- jQuery -->
 		<script type="text/javascript" src="js/jquery-ui.min.js"></script>			<!-- Custom Select -->
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>		<!-- Google Map -->
+		<script type="text/javascript" src="js/map-settings.js"></script>			<!-- Google Map Settings -->
 		<script type="text/javascript" src="js/slick.min.js"></script>				<!-- Slider -->
 		<script type="text/javascript" src="js/store.min.js"></script>				<!-- Local Storage -->
 		<script type="text/javascript" src="js/respond.js"></script>				<!-- @media support for old browsers -->
 		<script type="text/javascript" src="js/magnific-popup.js"></script>			<!-- Responsive Popup -->
 		<script type="text/javascript" src="js/dropdown.js"></script>				<!-- Dropdown -->
-		<script type="text/javascript" src="js/jquery.smoothscroll.js"></script>	<!-- Smooth Scroll -->
 		<script type="text/javascript" src="js/common.js"></script>					<!-- Custom Functions and Init -->
 	</head>
 	<body class="page-wrap">
 		<div class="clearfix body-inner">
+			
+		<!-- Popup -->
+			<div id="select-city" class="popup popup-longer">
+				<div id="popup-map"></div>
+			</div>
+		<!-- Popup End -->
+		
 			<div id="main">
 	<!-- Page -->
 				<div id="page">
@@ -380,7 +387,7 @@
 		
 		<!-- Side Contacts -->
 						<div id="side-contacts" class="hide-mobile side-contacts toggle-item">
-							<div>Телефон в <a class="internal-light-link light-link" href="">Москве</a></div>
+							<div>Телефон в <a class="internal-light-link light-link show-popup" href="#select-city" data-map="popup-map">Москве</a></div>
 							<div class="phone">
 								<div class="item">+7 945 123-45-67</div>
 								<div class="item">8 800 123-45-67</div>

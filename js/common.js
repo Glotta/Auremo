@@ -1,6 +1,4 @@
 jQuery(document).ready(function() {
-		
-	
 	/* Check Touch Devise */
 	if ('ontouchstart' in document.documentElement) {
 		$('body').addClass('touch');
@@ -12,7 +10,7 @@ jQuery(document).ready(function() {
 	/* Init Slider */
 	$('.slide-items').slick({
 		dots: false,
-		// infinite: true,
+		infinite: true,
 		variableWidth: true,
 		slidesToShow: 3,
 		slidesToScroll: 3,
@@ -88,8 +86,8 @@ jQuery(document).ready(function() {
 	/* Selectmenu */
 	$('.custom-select')
 		.selectmenu({
-			change: function( event, ui, y ) {
-				console.log(event, ui, y)
+			change: function() {
+				$('.ui-state-focus').removeClass('ui-state-focus');
 			}
 		})
 		.selectmenu('menuWidget');
@@ -117,7 +115,8 @@ jQuery(document).ready(function() {
 		block: '.compare-action',
 		toggle: true,
 		mirror: true,
-		alignTo: '.fake-checkbox'
+		alignTo: '.fake-checkbox',
+		compare: '.page-unit'
 	});
 	
 	/* Search page */
@@ -126,7 +125,7 @@ jQuery(document).ready(function() {
 		mirror: true,
 		parent: '.parent'
 	});
-	$('.search-table .table-item:not(".list-title")').searchButton({
+	$('.search-table tr:not(":first")').searchButton({
 		btn: '.submit-btn',
 		parent: '.search-table'
 	});
@@ -146,7 +145,22 @@ jQuery(document).ready(function() {
 	});
 	
 	/* Popup */
-	$('.show-popup').click(initPopup);
+	$('.show-popup').magnificPopup({
+		type : 'inline',
+		closeBtnInside: true,
+		closeMarkup: '<button type="button" class="icon icon-close mfp-close"></button>',
+		callbacks: {
+			open: function() {
+				if (this.ev.length == 1) {
+					var data = $(this.ev[0]).attr('data-map');
+					
+					if (!!data) {
+						initializeMap(data);
+					}
+				}
+			}
+		}
+	}, 0);
 });
 
 
@@ -174,33 +188,6 @@ function parallax() {
 	}
 }
 
-function initPopup(e) {
-	var src = '';
-	
-	if (e instanceof String) {
-		src = e;
-	}
-	else {
-		e.preventDefault();
-		src = $(e.currentTarget).attr('href');
-	}
-	
-	$popup = $(src);
-	
-	$.magnificPopup.open({
-		items : {
-			src : src
-		},
-		type : 'inline',
-		closeBtnInside: true,
-		closeMarkup: '<button type="button" class="icon icon-close mfp-close"></button>'
-	}, 0);
-	
-	if (!!$popup.attr('data-map')) {
-		initializeMap(src);
-	}
-}
-
 function initLng() {
 	var $lng = $('.lng-unit');
 	$('.close-btn').click(function(e){
@@ -222,12 +209,25 @@ function initLng() {
 function setBodyFontSize() {
 	var $body = $('body'),
 		size = parseInt($body.css('font-size')),
-		$links = $('#font-switcher .switch-link');
+		$links = $('#font-switcher .switch-link'),
+		sizes = [
+			17, // >= 1400
+			15, // < 1400
+			''  // < 900
+		];
 	
 	var setActive = function(e) {
 		if (window.innerWidth < 900) {
-			$body.css('font-size', '');
+			$body.css('font-size', sizes[2]);
 			return;
+		}
+		else if (e && e.type == 'resize') {
+			if (window.innerWidth >= 1400) {
+				size = sizes[0];
+			}
+			else if (window.innerWidth < 1400) {
+				size = sizes[1];
+			}
 		}
 		
 		var ls = localStorage.getItem('bodySize');
@@ -243,17 +243,16 @@ function setBodyFontSize() {
 		
 		$body.css('font-size', ls + 'px');
 		
-		
 		if (ls == null) {
 			localStorage.setItem('bodySize', size.toString());
 			$links.eq(1).addClass('disable');
 		}
 		else {
 			$links.removeClass('disable');
-			if (size + 2 <= ls) {
+			if (size + 3 <= ls) {
 				$links.eq(2).addClass('disable');
 			}
-			else if (size - 5 >= ls) {
+			else if (size - 3 >= ls) {
 				$links.eq(0).addClass('disable');
 			}
 			else if (size == ls) {
@@ -264,8 +263,12 @@ function setBodyFontSize() {
 	
 	setActive();
 	
-	$links.not('.desable').bind('click', function(e){
+	$links.bind('click', function(e){
 		e.preventDefault();
+		
+		if ($(e.currentTarget).hasClass('disable')) {
+			return false;
+		}
 		
 		var rel = $(e.currentTarget).attr('rel'),
 			ls = parseInt(localStorage.getItem('bodySize'));
@@ -811,34 +814,38 @@ function setBodyFontSize() {
 				$block.hide();
 			}
 			else {
-				$block.show();
 				
-				var $el = !!options.parent ? $label.closest(options.parent) : $label,
-					$alignTo = !!options.alignTo ? $label.find(options.alignTo) : $el,
-					parentScroll = $el.offsetParent().scrollLeft();
+				if (!options.compare || !!options.compare && $label.closest(options.compare).find('input[type="checkbox"]:checked').length > 0) {
 				
-				var o = $el.position(),
-					left = o.left - $block.outerWidth() - 10,
-					top = o.top - $block.outerHeight()/2 + $alignTo.outerHeight()/2;
-				
-				if (!!options.mirror) {
-					if (left < 0) {
-						left = o.left + $alignTo.outerWidth() + 10;
-						$block.addClass('right-pos');
+					$block.show();
+					
+					var $el = !!options.parent ? $label.closest(options.parent) : $label,
+						$alignTo = !!options.alignTo ? $label.find(options.alignTo) : $el,
+						parentScroll = $el.offsetParent().scrollLeft();
+					
+					var o = $el.position(),
+						left = o.left - $block.outerWidth() - 10,
+						top = o.top - $block.outerHeight()/2 + $alignTo.outerHeight()/2;
+					
+					if (!!options.mirror) {
+						if (left < 0) {
+							left = o.left + $alignTo.outerWidth() + 10;
+							$block.addClass('right-pos');
+						}
+						else {
+							$block.removeClass('right-pos');
+						}
 					}
-					else {
-						$block.removeClass('right-pos');
+					
+					if (parentScroll) {
+						left += parentScroll;
 					}
+					
+					$block.css({
+						left: left,
+						top: top
+					});
 				}
-				
-				if (parentScroll) {
-					left += parentScroll;
-				}
-				
-				$block.css({
-					left: left,
-					top: top
-				});
 			}
 		};
 		

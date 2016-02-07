@@ -14,16 +14,23 @@
 		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>		<!-- jQuery -->
 		<script type="text/javascript" src="js/jquery-ui.min.js"></script>			<!-- Custom Select -->
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>		<!-- Google Map -->
+		<script type="text/javascript" src="js/map-settings.js"></script>			<!-- Google Map Settings -->
 		<script type="text/javascript" src="js/slick.min.js"></script>				<!-- Slider -->
 		<script type="text/javascript" src="js/store.min.js"></script>				<!-- Local Storage -->
 		<script type="text/javascript" src="js/respond.js"></script>				<!-- @media support for old browsers -->
 		<script type="text/javascript" src="js/magnific-popup.js"></script>			<!-- Responsive Popup -->
 		<script type="text/javascript" src="js/dropdown.js"></script>				<!-- Dropdown -->
-		<script type="text/javascript" src="js/jquery.smoothscroll.js"></script>	<!-- Smooth Scroll -->
 		<script type="text/javascript" src="js/common.js"></script>					<!-- Custom Functions and Init -->
 	</head>
 	<body class="page-wrap">
 		<div class="clearfix body-inner">
+			
+		<!-- Popup -->
+			<div id="select-city" class="popup popup-longer">
+				<div id="popup-map"></div>
+			</div>
+		<!-- Popup End -->
+		
 			<div id="main">
 	<!-- Page -->
 				<div id="page">
@@ -35,10 +42,10 @@
 						<h1 class="general-title page-title">о компании</h1>
 						<div class="clearfix">
 							<div class="page-left">
-								<p class="page-text">ООО «Ауремо» – молодая динамично развивающаяся компания, которая, несмотря на свою молодость, прочно завоевала Украинский рынок. Нашими клиентами являются промышленные предприятия со всей Украины и мира: на счету компании более 50-ти успешных экспортных сделок.</p>
+								<p>ООО «Ауремо» – молодая динамично развивающаяся компания, которая, несмотря на свою молодость, прочно завоевала Украинский рынок. Нашими клиентами являются промышленные предприятия со всей Украины и мира: на счету компании более 50-ти успешных экспортных сделок.</p>
 								<p class="note-unit">Мы поставляем продукцию во все уголки Земли, от России до Австралии и США</p>
-								<p class="page-text">Компания Ауремо предлагает широкий ассортимент цветного и нержавеющего металлопроката, специальных сталей, титана. Хороший выбор марок и сплавов, размеров и форм не оставит равнодушным даже самого привередливого покупателя. Также компания осуществляет производство и поставку продукции по чертежам заказчика.</p>
-								<p class="page-text">Нашу продукцию вы можете приобрести со склада в Киеве и под заказ. Мы работаем только с проверенными временем и довольными клиентами поставщиками.</p>
+								<p>Компания Ауремо предлагает широкий ассортимент цветного и нержавеющего металлопроката, специальных сталей, титана. Хороший выбор марок и сплавов, размеров и форм не оставит равнодушным даже самого привередливого покупателя. Также компания осуществляет производство и поставку продукции по чертежам заказчика.</p>
+								<p>Нашу продукцию вы можете приобрести со склада в Киеве и под заказ. Мы работаем только с проверенными временем и довольными клиентами поставщиками.</p>
 							</div>
 							<div class="page-right light clearfix">
 								<div class="company-video">
@@ -51,8 +58,8 @@
 										</a>
 									</div>
 								</div>
-								<p class="page-text font-smaller-em">В своей работе мы руководствуемся принципом индивидуального подхода к каждому клиенту.</p>
-								<p class="page-text font-smaller-em">Мы можем удовлетворить даже самый невероятный запрос, легко решаем сложные задачи. Наш девиз: «Простое в сложном!»</p>
+								<p class="font-smaller-em">В своей работе мы руководствуемся принципом индивидуального подхода к каждому клиенту.</p>
+								<p class="font-smaller-em">Мы можем удовлетворить даже самый невероятный запрос, легко решаем сложные задачи. Наш девиз: «Простое в сложном!»</p>
 							</div>
 						</div>
 					</div>
@@ -330,7 +337,7 @@
 		
 		<!-- Side Contacts -->
 						<div id="side-contacts" class="hide-mobile side-contacts toggle-item">
-							<div>Телефон в <a class="internal-light-link light-link" href="">Москве</a></div>
+							<div>Телефон в <a class="internal-light-link light-link show-popup" href="#select-city" data-map="popup-map">Москве</a></div>
 							<div class="phone">
 								<div class="item">+7 945 123-45-67</div>
 								<div class="item">8 800 123-45-67</div>
