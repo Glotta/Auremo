@@ -111,19 +111,27 @@ body { height: 100%; font: 106.5%/1.45 'open_sansregular', Arial, Helvetica, san
 .cell { display: table-cell; }
 .row { display: table-row; }
 
-table.list-table,
-.list-table table,
-ul.list-table { width: 100%; font-size: .9em; background-color: #f5f5f5; margin: 5px 0; border-bottom: 1px solid #f5f5f5; }
-.list-table tr:first-child { color: #fff; font-family: 'open_sansbold', Arial, Helvetica, sans-serif; background-color: #c0af8d; }
-.list-table td:last-child, .list-table .cell { padding-right: 67px; }
-.list-table td, .list-table .cell { padding-top: 9px; padding-bottom: 10px; padding-left: 67px; }
+.list-table { display: table; width: 100%; font-size: .9em; background-color: #f5f5f5; margin: 5px 0; border-bottom: 1px solid #f5f5f5; }
+.list-table .table-item { display: table-row; }
+.list-table .cell:last-child { padding-right: 67px; }
+.list-table .table-cell { padding-top: 9px; padding-bottom: 10px; padding-left: 67px; }
+.list-table .list-title { color: #fff; font-family: 'open_sansbold', Arial, Helvetica, sans-serif; background-color: #c0af8d; }
 .list-table .list-caption { display: table-caption; }
 .list-table .item-even { background-color: #fff; }
-ul.list-table { display: table; }
-.list-table .table-item { display: table-row; }
 .border-table .cell { border-top: 2px solid #fff; }
 .list-table .select-cell { width: 40%; }
 .list-inputs .text-field { vertical-align: middle; }
+
+.content-table table { width: 100%; font-size: .9em; background-color: #f5f5f5; margin-top: 5px; border-bottom: 1px solid #f5f5f5; }
+.content-table tr:first-child { text-align: left; color: #fff; font-family: 'open_sansregular', Arial, Helvetica, sans-serif; background-color: #c0af8d; }
+.content-table th { font-weight: normal; }
+.content-table td,
+.content-table th { padding-top: 9px; padding-bottom: 10px; padding-left: 20px; }
+.content-table td:first-child,
+.content-table th:first-child { padding-left: 67px; }
+.content-table td:last-child,
+.content-table th:last-child { padding-right: 67px; }
+.content-table .item-even { background-color: #fff; }
 
 .list-blocks { padding: 11px 0 47px 1px; font-size: .9em; }
 .list-blocks .lb-item { padding: 9px 12px; white-space: nowrap; float: left; border: 1px solid #deddd7; margin-left: -1px; margin-top: -1px; position: relative; }
@@ -148,6 +156,8 @@ ul.list-table { display: table; }
 .multi-list .first-lavel { padding-left: 20px; padding-top: 3px; }
 .multi-list .second-lavel { padding-top: 3px; }
 .multi-list .circle-list .list-item { padding: 5px 0 5px 20px; }
+
+.flex-list { display: -webkit-box;  display: -moz-box;  display: -ms-flexbox;  display: -webkit-flex;  display: flex; -webkit-flex-wrap: wrap;  -ms-flex-wrap: wrap;  flex-wrap: wrap; }
 
 /* Notifications */
 .note-box { padding: 10px 10px 12px; font-size: 13px; border-width: 1px; border-style: solid; margin: 15px 0; }
@@ -525,8 +535,11 @@ input.text-field { height: 37px; }
 #sidebar-404 .logo-link { background-image: url(../img/logo-404.png); }
 
 /* Page Contacts */
-.list-contacts { line-height: 1.8em; display: table; }
-.list-contacts .table-cell { padding-top: 24px; padding-bottom: 26px; }
+.list-contacts { line-height: 1.8em; border-bottom: 1px solid #f5f5f5; margin-top: 5px; }
+.list-contacts li:nth-child(4n-3),
+.list-contacts li:nth-child(4n-2) { background-color: #f5f5f5; }
+.list-contacts li { padding: 24px 0 26px 67px; width: 50%; }
+.list-contacts li:nth-child(2n) { padding-right: 67px; }
 .list-contacts .title { padding-bottom: 8px; }
 
 /* Maps */
@@ -547,15 +560,9 @@ input.text-field { height: 37px; }
 .search-form .submit-btn { padding: 18px 45px 15px; height: 58px; }
 .list-action { text-align: right; white-space: nowrap; padding-left: 10px; }
 
-.search-table { font-size: .9em; position: relative; }
-.search-table table { width: 100%; background-color: #f5f5f5; border-bottom: 1px solid #f5f5f5; }
-.search-table tr { padding-left: 20px; padding-top: 15px; padding-bottom: 16px; }
-.search-table td:first-child { padding-left: 67px; }
-.search-table td:last-child { padding-right: 67px; }
-.search-table tr:first-child { font-family: 'open_sansregular', Arial, Helvetica, sans-serif; }
+.search-table { position: relative; }
 .search-table tr:hover { color: #c00; cursor: pointer; }
 .search-table tr:first-child:hover { color: #fff; cursor: default; }
-
 .search-table .submit-btn { padding-left: 15px; padding-right: 15px; display: none; position: absolute; z-index: 2; }
 .search-desc { font-size: .9em; padding-bottom: 10px; padding-top: 5px; }
 
@@ -638,8 +645,6 @@ input.phone-field { font-size: 24px; height: 51px; text-align: center; }
 @media (max-width: 1900px) {
 	#video-unit, .calc-info, .payment-info, .slide-header, #footer .inner, .table-unit .item { padding-left: 47px; padding-right: 47px; }
 	.simple-block { padding-left: 47px; padding-right: 47px; }
-	.list-table .table-cell { padding-left: 47px; }
-	.list-table .table-cell:last-child { padding-right: 47px; }
 		
 	#sidebar .menu-item.active > .submenu { display: none; }
 	#sidebar .menu-item.active:hover > .submenu { display: block; }
@@ -649,8 +654,17 @@ input.phone-field { font-size: 24px; height: 51px; text-align: center; }
 	.list-items .item { padding-left: 37px; padding-right: 37px; }
 	
 	/* Search page */
-	.search-table td:first-child { padding-left: 47px; }
-	.search-table td:last-child { padding-right: 47px; }
+	.list-table .table-cell { padding-left: 47px; }
+	.list-table .table-cell:last-child { padding-right: 47px; }
+	
+	.content-table th,
+	.content-table td { padding-left: 47px; }
+	.content-table th:last-child,
+	.content-table td:last-child { padding-right: 47px; }
+	
+	/* Contacts */
+	.list-contacts li { padding-left: 47px; }
+	.list-contacts li:nth-child(2n) { padding-right: 47px; }
 	
 	/* Price page */
 	.filter-unit .cell:first-child { padding-left: 47px;}
@@ -668,9 +682,6 @@ input.phone-field { font-size: 24px; height: 51px; text-align: center; }
 	#video-unit, .calc-info, .payment-info, .slide-header, #footer .inner, .table-unit .item { padding-left: 30px; padding-right: 30px; }
 	.simple-block { padding-left: 30px; padding-right: 30px; }
 	
-	.list-table .table-cell { padding-left: 30px; }
-	.list-table .table-cell:last-child { padding-right: 30px; }
-	
 	.page-wrap .body-inner { padding-right: 57px; }
 	
 	/* Rightbar */
@@ -687,10 +698,18 @@ input.phone-field { font-size: 24px; height: 51px; text-align: center; }
 	.unit-404:before { font-size: 500px; margin-top: -275px; }
 	
 	/* Search page */
-	.search-table td { padding-top: 9px; padding-bottom: 10px; }
-	.search-table td:first-child { padding-left: 30px; }
-	.search-table td:last-child { padding-right: 30px; }
-	.search-table .submit-btn { padding: 6px 10px 5px; font-size: 13px; }
+	.content-table th,
+	.content-table td { padding-left: 30px; }
+	.content-table th:last-child,
+	.content-table td:last-child { padding-right: 30px; }
+	.content-table .submit-btn { padding: 6px 10px 5px; font-size: 13px; }
+	
+	.list-table .table-cell { padding-left: 30px; }
+	.list-table .table-cell:last-child { padding-right: 30px; }
+	
+	/* Contacts */
+	.list-contacts li { padding-left: 30px; }
+	.list-contacts li:nth-child(2n) { padding-right: 30px; }
 	
 	/* Price page */
 	.filter-unit .cell:first-child { padding-left: 30px;}
@@ -809,12 +828,15 @@ input.phone-field { font-size: 24px; height: 51px; text-align: center; }
 	.list-items { margin-left: -20px; margin-right: -20px; }
 	.list-items .item { padding-left: 20px; padding-right: 20px; }
 	
-	.mut-table { display: block; }
-	.mut-table tr { display: block; padding: 9px 30px 10px; }
-	.mut-table td:last-child { padding-right: 0; }
-	.mut-table td:first-child { padding-left: 0; }
-	.mut-table td { display: block; padding: 0; border-top: none; }
-	.mut-table .select-cell { width: auto; }
+	.content-table table, .content-table tbody { display: block; }
+	.content-table tr { display: block; padding: 9px 30px 10px; }
+	.content-table td:last-child,
+	.content-table th:last-child { padding-right: 0; }
+	.content-table td:first-child,
+	.content-table th:first-child { padding-left: 0; }
+	.content-table td,
+	.content-table th { display: block; padding: 0; border-top: none; }
+	.content-table .select-cell { width: auto; }
 	
 	/* 404 */
 	#page-404 { min-height: 400px; }
@@ -829,7 +851,7 @@ input.phone-field { font-size: 24px; height: 51px; text-align: center; }
 	.filter-unit { border: 0; }
 	.filter-unit .cell { padding-left: 30px; padding-right: 30px; display: block; width: 100%; border-width: 1px 0 0; }
 	.currency-list { position: relative; margin: 0 -20px; }
-	.currency-list .c-item { display: inline-block; padding: 0 40px 0 20px; }
+	.currency-list .c-item { display: inline-block; padding: 0 40px 0 20px; }	
 }
 /* <= 640px */
 @media (max-width: 640px) {
@@ -849,6 +871,9 @@ input.phone-field { font-size: 24px; height: 51px; text-align: center; }
 	.bg-header { margin-top: -20px; }
 	.bg-header .over-unit { padding-top: 20px; padding-bottom: 20px; }
 	
+	.flex-list { display: block; }
+	.flex-list li { width: 100%; }
+	
 	/* 404 */
 	.unit-404 { width: 90%; }
 	
@@ -856,12 +881,16 @@ input.phone-field { font-size: 24px; height: 51px; text-align: center; }
 	.filter-unit .cell:first-child { padding-left: 20px; }
 	.filter-unit .cell:last-child { padding-right: 20px; }
 	
-	.search-table td:first-child { padding-left: 20px; }
-	.search-table td:last-child { padding-right: 20px; }
+	.content-table tr { padding-left: 20px; padding-right: 20px; }
+	.content-table td:last-child { padding-right: 0; }
+	.content-table td:first-child { padding-left: 0; }
 	
-	.mut-table tr { padding-left: 20px; padding-right: 20px; }
-	.mut-table td:last-child { padding-right: 0; }
-	.mut-table td:first-child { padding-left: 0; }
+	/* Page Contacts */
+	.list-contacts li { padding-left: 20px; }
+	.list-contacts li:nth-child(2n) { padding-right: 20px; }
+	.list-contacts li:nth-child(4n-3),
+	.list-contacts li:nth-child(4n-2) { background-color: inherit; }
+	.list-contacts li:nth-child(2n-1) { background-color: #f5f5f5; }
 	
 	/* Popup */
 	.popup-unit { padding-left: 40px; padding-right: 40px; }
@@ -892,12 +921,6 @@ input.phone-field { font-size: 24px; height: 51px; text-align: center; }
 	#page-404 { min-height: 350px; }
 	.unit-404 .general-title { padding-bottom: 30px; }
 	.unit-404:before { font-size: 350px; letter-spacing: -20px; margin-top: -220px; }
-	
-	/* Contacts Page */
-	.list-contacts { display: block; }
-	.list-contacts .table-item { display: block; }
-	.list-contacts .cell { display: block; padding-top: 0; }
-	.list-contacts .cell:first-child { padding-top: 24px; }
 	
 	/* Search page */
 	.search-form { padding: 10px 0 20px; }

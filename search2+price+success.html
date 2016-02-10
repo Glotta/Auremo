@@ -10,6 +10,7 @@
 		<link href="css/slick.css" rel="stylesheet" type="text/css">
 		<link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
 		<link href="css/style.css" rel="stylesheet" type="text/css">
+		<!--[if lte IE 9]><link href="css/ie.css" rel="stylesheet" type="text/css" /><![endif]-->
 		
 		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>		<!-- jQuery -->
 		<script type="text/javascript" src="js/jquery-ui.min.js"></script>			<!-- Custom Select -->
@@ -34,7 +35,7 @@
 			$(document).ready(function() {
 				$.magnificPopup.open({
 					items : {
-						src : '.popup'
+						src : '.popup-notice'
 					},
 					type : 'inline',
 					closeBtnInside: true,
@@ -72,107 +73,107 @@
 								</div>
 							</div>
 						</div>
-						<div class="x-scroll search-table">
-							<ul>
-								<li>
-									<div>Марка ГОСТ</div>
-									<div>Аналог</div>
-									<div>Aisi Uns</div>
-									<div>Название</div>
-									<div>Тип стали</div>
-									<div>Форма</div>
-									<div>Комментарий</div>
-									<div>Остаток</div>
-									<div>Название</div>
-									<div>Тип стали</div>
-									<div>Форма</div>
-									<div>Комментарий</div>
-								</li>
-								<li class="item-even">
-									<div>12Х18Н10Т-В</div>
-									<div>ЭИ914</div>
-									<div>321</div>
-									<div>Титан</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>245</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>245</div>
-								</li>
-								<li>
-									<div>12Х18Н10Т-В</div>
-									<div>ЭИ914</div>
-									<div>321</div>
-									<div>Титан</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>363</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>363</div>
-								</li>
-								<li class="item-even">
-									<div>12Х18Н10Т-В</div>
-									<div>ЭИ914</div>
-									<div>321</div>
-									<div>Титан</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>713</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>713</div>
-								</li>
-								<li>
-									<div>12Х18Н10Т-В</div>
-									<div>ЭИ914</div>
-									<div>321</div>
-									<div>Титан</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>945</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>945</div>
-								</li>
-								<li class="item-even">
-									<div>12Х18Н10Т-В</div>
-									<div>ЭИ914</div>
-									<div>321</div>
-									<div>Титан</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>124</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>124</div>
-								</li>
-								<li>
-									<div>12Х18Н10Т-В</div>
-									<div>ЭИ914</div>
-									<div>321</div>
-									<div>Титан</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>579</div>
-									<div>Нержавеющая сталь</div>
-									<div>Проволока</div>
-									<div>100,6</div>
-									<div>579</div>
-								</li>
-							</ul>
+						<div class="x-scroll content-table search-table">
+							<table>
+								<tr>
+									<td>Марка ГОСТ</td>
+									<td>Аналог</td>
+									<td>Aisi Uns</td>
+									<td>Название</td>
+									<td>Тип стали</td>
+									<td>Форма</td>
+									<td>Комментарий</td>
+									<td>Остаток</td>
+									<td>Название</td>
+									<td>Тип стали</td>
+									<td>Форма</td>
+									<td>Комментарий</td>
+								</tr>
+								<tr class="item-even">
+									<td>12Х18Н10Т-В</td>
+									<td>ЭИ914</td>
+									<td>321</td>
+									<td>Титан</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>245</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>245</td>
+								</tr>
+								<tr>
+									<td>12Х18Н10Т-В</td>
+									<td>ЭИ914</td>
+									<td>321</td>
+									<td>Титан</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>363</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>363</td>
+								</tr>
+								<tr class="item-even">
+									<td>12Х18Н10Т-В</td>
+									<td>ЭИ914</td>
+									<td>321</td>
+									<td>Титан</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>713</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>713</td>
+								</tr>
+								<tr>
+									<td>12Х18Н10Т-В</td>
+									<td>ЭИ914</td>
+									<td>321</td>
+									<td>Титан</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>945</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>945</td>
+								</tr>
+								<tr class="item-even">
+									<td>12Х18Н10Т-В</td>
+									<td>ЭИ914</td>
+									<td>321</td>
+									<td>Титан</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>124</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>124</td>
+								</tr>
+								<tr>
+									<td>12Х18Н10Т-В</td>
+									<td>ЭИ914</td>
+									<td>321</td>
+									<td>Титан</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>579</td>
+									<td>Нержавеющая сталь</td>
+									<td>Проволока</td>
+									<td>100,6</td>
+									<td>579</td>
+								</tr>
+							</table>
 							<button class="submit-btn btn">Заказать</button>
 						</div>
 					</div>

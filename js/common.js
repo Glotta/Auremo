@@ -91,11 +91,6 @@ jQuery(document).ready(function() {
 			}
 		})
 		.selectmenu('menuWidget');
-		
-	$('.popup-select .select')
-		.selectmenu()
-		.selectmenu('menuWidget')
-		.addClass('popup-select');
 	
 	$('.color-select').each(function(index, el) {
 		$(el).selectmenu()
@@ -261,7 +256,7 @@ function setBodyFontSize() {
 		}
 	};
 	
-	setActive();
+	//setActive();
 	
 	$links.bind('click', function(e){
 		e.preventDefault();
