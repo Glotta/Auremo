@@ -1,0 +1,4 @@
+.list-contacts li { width: 100%; }
+.list-contacts li:nth-child(4n-3),
+.list-contacts li:nth-child(4n-2) { background-color: inherit; }
+.list-contacts li:nth-child(2n-1) { background-color: #f5f5f5; }
