@@ -356,9 +356,12 @@ input.text-field { height: 37px; }
 
 /* Side Contacts */
 .side-contacts { font-size: .9em; padding: 22px 28px 22px; color: #fff; position: relative; }
+.side-contacts .info:first-child { padding-top: 0; }
 .side-contacts .info { padding-top: 15px; }
-.side-contacts .phone { padding-top: 10px; }
+.side-contacts .info-label { padding-bottom: 10px; }
 .side-contacts .item { font-size: 2.05em; font-family: 'pf_din_text_comp_promedium', Arial, Helvetica, sans-serif; }
+.side-contacts li { display: none; }
+.side-contacts .active { display: block; }
 
 /* Text Switcher */
 #font-switcher .switch-link { margin: 0 2px; }
@@ -460,6 +463,9 @@ input.text-field { height: 37px; }
 #footer .text { padding-top: 10px; }
 #footer .site-info { vertical-align: top; display: inline-block; padding-right: 40px; width: 72.3%; }
 #footer .other-info { vertical-align: top; display: inline-block; width: 25%; }
+.footer-contacts { padding-top: 10px; }
+.footer-contacts li { display: none; }
+.footer-contacts .active { display: block; }
 
 /* Rightbar */
 #rightbar:before { content: ''; -webkit-animation-fill-mode: none; animation-fill-mode: none; z-index: 1; position: fixed; top: 0; right: 0; height: 100%; width: 262px; background-color: #fff; border-right: 1px solid #e9e8e0; border-left: 1px solid #e9e8e0; }

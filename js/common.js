@@ -212,6 +212,8 @@ function setBodyFontSize() {
 		];
 	
 	var setActive = function(e) {
+		var ls = localStorage.getItem('bodySize');
+		
 		if (window.innerWidth < 900) {
 			$body.css('font-size', sizes[2]);
 			return;
@@ -225,8 +227,6 @@ function setBodyFontSize() {
 			}
 		}
 		
-		var ls = localStorage.getItem('bodySize');
-		
 		if (e) {
 			$body.css({
 				'-webkit-transition': 'font-size .5s ease-out',
@@ -236,27 +236,26 @@ function setBodyFontSize() {
 			});
 		}
 		
-		$body.css('font-size', ls + 'px');
-		
 		if (ls == null) {
-			localStorage.setItem('bodySize', size.toString());
 			$links.eq(1).addClass('disable');
 		}
 		else {
+			ls = parseInt(ls);
+			$body.css('font-size', size + ls + 'px');
 			$links.removeClass('disable');
-			if (size + 3 <= ls) {
+			if (ls == 0) {
+				$links.eq(1).addClass('disable');
+			}
+			else if (ls >= 2) {
 				$links.eq(2).addClass('disable');
 			}
-			else if (size - 3 >= ls) {
+			else if (ls <= -2) {
 				$links.eq(0).addClass('disable');
-			}
-			else if (size == ls) {
-				$links.eq(1).addClass('disable');
 			}
 		}
 	};
 	
-	//setActive();
+	setActive();
 	
 	$links.bind('click', function(e){
 		e.preventDefault();
@@ -266,16 +265,15 @@ function setBodyFontSize() {
 		}
 		
 		var rel = $(e.currentTarget).attr('rel'),
-			ls = parseInt(localStorage.getItem('bodySize'));
-		
+			ls = parseInt(localStorage.getItem('bodySize') || 0);
 		if (rel == '+') {
-			localStorage.setItem('bodySize', ls + 1);
+			localStorage.setItem('bodySize', ++ls);
 		}
 		else if (rel == '-') {
-			localStorage.setItem('bodySize', ls - 1);
+			localStorage.setItem('bodySize', --ls);
 		}
 		else {
-			localStorage.setItem('bodySize', size);
+			localStorage.setItem('bodySize', 0);
 		}
 		setActive(e);
 	});

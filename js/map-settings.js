@@ -153,47 +153,75 @@ function initializeMap(data){
 		
 		/* Select City */
 		
-		var myLatlng = new google.maps.LatLng(48.4581468,35.0222442);
+		options.zoom = 4;
 		
-		options.center = myLatlng;
-		options.zoom = 6;
+		var contacts = [
+			{
+				alias: 'dnepropetrovsk',
+				city: 'Днепропетровск',
+				phone: '+38 067 123-45-67',
+				email: 'info@fresh-d.net',
+				latLng: [48.4581468, 35.0222442]
+			},
+			{
+				alias: 'moscow',
+				city: 'Москва',
+				phone: '+7 945 123-45-67',
+				email: 'info@fresh-d.net',
+				latLng: [55.7498598,37.3523249]
+			}
+		];
 		
-		googleMaps.maps[data] = new google.maps.Map(document.getElementById(data), options);
-
-		var marker = new google.maps.Marker({
-			icon: settings.markerImage,
-			position: myLatlng, 
-			map: googleMaps.maps[data],
-			//animation:google.maps.Animation.BOUNCE
+		var infowindow = new google.maps.InfoWindow;
+		
+		for (var i = 0; i < contacts.length; i++) {
+			var latLng = new google.maps.LatLng(contacts[i].latLng[0], contacts[i].latLng[1]);
+			
+			if (!i) {
+				options.center = latLng;
+				googleMaps.maps[data] = new google.maps.Map(document.getElementById(data), options);
+			}
+			
+			var contentString = '<div class="map-tooltip">' +
+				'<div class="mt-title"><a class="internal-link" href="' + contacts[i].alias + '">' + contacts[i].city + '</a></div>' +
+				'<div class="os-bold">' + contacts[i].phone + '</div>' +
+				'<div>' + contacts[i].email + '</div>' +
+			'</div>';
+			
+			var marker = new google.maps.Marker({
+				icon: settings.markerImage,
+				position: latLng, 
+				map: googleMaps.maps[data],
+				zIndex: i + 1,
+				contentString: contentString
+			});
+			
+			google.maps.event.addListener(marker, 'mouseover', function() {
+				this.setIcon(settings.markerImageHover);
+			});
+	
+			google.maps.event.addListener(marker, 'mouseout', function() {
+				this.setIcon(settings.markerImage);
+			});
+			
+			marker.addListener('click', function() {
+				var marker = this;
+				infowindow.close();
+				infowindow.setContent(marker.contentString);
+				infowindow.open(googleMaps.maps[data], marker);
+			});
+		}
+		
+		$('#' + data).delegate('.mt-title a', 'click', function(e) {
+			e.preventDefault();
+			var $elToShow = $('.contacts-' + $(e.currentTarget).attr('href'));
+			if (!$elToShow.hasClass('active')) {
+				$elToShow
+					.addClass('active')
+					.siblings()
+					.removeClass('active');
+			}
 		});
-		
-		var contentString = '<div class="map-tooltip">' +
-			'<div class="mt-title"><a class="internal-link" href="">Днепропетровск</a></div>' +
-			'<div class="os-bold">+38 067 123-45-67</div>' +
-			'<div>info@fresh-d.net</div>' +
-		'</div>';
-		
-		var infowindow = new google.maps.InfoWindow({
-			content: contentString
-		});
-		
-		google.maps.event.addListener(marker, 'mouseover', function() {
-			marker.setIcon(settings.markerImageHover);
-		});
-
-		google.maps.event.addListener(marker, 'mouseout', function() {
-			marker.setIcon(settings.markerImage);
-		});
-		
-		marker.addListener('click', function() {
-			infowindow.open(googleMaps.maps[data], marker);
-		});
-		
-		/*map.addListener('center_changed', function() {
-			window.setTimeout(function() {
-				map.panTo(marker.getPosition());
-			}, 3000);
-		});*/
 	}
 	else if ('contacts-map') {
 		
@@ -219,5 +247,11 @@ function initializeMap(data){
 		google.maps.event.addListener(marker, 'mouseout', function() {
 			marker.setIcon(settings.markerImage);
 		});
+		
+		/*map.addListener('center_changed', function() {
+			window.setTimeout(function() {
+				map.panTo(marker.getPosition());
+			}, 3000);
+		});*/
 	}
 }
