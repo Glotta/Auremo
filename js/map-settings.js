@@ -144,7 +144,7 @@ var googleMaps = {
 
 function initializeMap(data){
 	if (!!googleMaps.maps[data]) {
-		return;
+		//return;
 	}
 	var settings = googleMaps.mapSettings,
 		options = settings.mapOptions;
@@ -185,7 +185,7 @@ function initializeMap(data){
 			var contentString = '<div class="map-tooltip">' +
 				'<div class="mt-title"><a class="internal-link" href="' + contacts[i].alias + '">' + contacts[i].city + '</a></div>' +
 				'<div class="os-bold">' + contacts[i].phone + '</div>' +
-				'<div>' + contacts[i].email + '</div>' +
+				'<div><a class="internal-link" href="mailto:' + contacts[i].alias + '">' + contacts[i].email + '</a></div>' +
 			'</div>';
 			
 			var marker = new google.maps.Marker({
@@ -221,6 +221,7 @@ function initializeMap(data){
 					.siblings()
 					.removeClass('active');
 			}
+			infowindow.close();
 		});
 	}
 	else if ('contacts-map') {

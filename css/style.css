@@ -123,7 +123,8 @@ body { height: 100%; font: 106.5%/1.45 'open_sansregular', Arial, Helvetica, san
 .list-inputs .text-field { vertical-align: middle; }
 
 .content-table table { width: 100%; font-size: .9em; background-color: #f5f5f5; margin-top: 5px; border-bottom: 1px solid #f5f5f5; }
-.content-table tr:first-child { text-align: left; color: #fff; font-family: 'open_sansregular', Arial, Helvetica, sans-serif; background-color: #c0af8d; }
+.content-table > tr:first-child,
+.content-table thead > tr:first-child { text-align: left; color: #fff; font-family: 'open_sansregular', Arial, Helvetica, sans-serif; background-color: #c0af8d; }
 .content-table th { font-weight: normal; }
 .content-table td,
 .content-table th { padding-top: 9px; padding-bottom: 10px; padding-left: 20px; }
@@ -568,7 +569,8 @@ input.text-field { height: 37px; }
 
 .search-table { position: relative; }
 .search-table tr:hover { color: #c00; cursor: pointer; }
-.search-table tr:first-child:hover { color: #fff; cursor: default; }
+.search-table > tr:first-child:hover,
+.search-table tbody > tr:first-child:hover { color: #fff; cursor: default; }
 .search-table .submit-btn { padding-left: 15px; padding-right: 15px; display: none; position: absolute; z-index: 2; }
 .search-desc { font-size: .9em; padding-bottom: 10px; padding-top: 5px; }
 
@@ -834,7 +836,9 @@ input.phone-field { font-size: 24px; height: 51px; text-align: center; }
 	.list-items { margin-left: -20px; margin-right: -20px; }
 	.list-items .item { padding-left: 20px; padding-right: 20px; }
 	
-	.content-table table, .content-table tbody { display: block; }
+	.content-table table,
+	.content-table tbody,
+	.content-table thead { display: block; }
 	.content-table tr { display: block; padding: 9px 30px 10px; }
 	.content-table td:last-child,
 	.content-table th:last-child { padding-right: 0; }
